@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { MapPin, ChevronDown } from "lucide-react";
 import heroImage from "@/assets/hero-cannes.jpg";
+import sergeProfile from "@/assets/serge-profile.jpg";
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -23,6 +24,17 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20 text-center">
         <div className="max-w-5xl mx-auto space-y-8 animate-fade-in">
+          {/* Serge Profile Image */}
+          <div className="flex justify-center mb-8">
+            <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary shadow-[var(--shadow-gold)] hover:scale-105 transition-transform duration-300">
+              <img
+                src={sergeProfile}
+                alt="Serge Benamou - Fondateur"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 backdrop-blur-sm">
             <MapPin className="w-4 h-4 text-primary" />
