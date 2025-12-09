@@ -1,0 +1,10 @@
+[package]
+name = "plugins"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { workspace = true }
+genealogy-types = { path = "../genealogy-types" }
+serde = { workspace = true }
+serde_json = { workspace = true }

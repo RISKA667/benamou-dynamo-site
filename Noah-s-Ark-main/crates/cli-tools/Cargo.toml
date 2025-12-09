@@ -1,0 +1,12 @@
+[package]
+name = "cli-tools"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { workspace = true }
+database = { path = "../database" }
+genealogy-types = { path = "../genealogy-types" }
+tokio = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }

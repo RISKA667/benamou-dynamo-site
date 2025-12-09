@@ -1,0 +1,13 @@
+[package]
+name = "genealogy-core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { workspace = true }
+genealogy-types = { path = "../genealogy-types" }
+database = { path = "../database" }
+neo4rs = { workspace = true }
+tokio = { workspace = true }
+uuid = { workspace = true }
+async-recursion = "1.1"
