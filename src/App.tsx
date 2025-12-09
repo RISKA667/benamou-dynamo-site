@@ -1,27 +1,35 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import { useState } from "react";
+import PersonDetails from "./components/PersonDetails";
+import PersonSearch from "./components/PersonSearch";
+import RelationshipInspector from "./components/RelationshipInspector";
 
-const queryClient = new QueryClient();
+export default function App() {
+  const [selectedPersonId, setSelectedPersonId] = useState<string | null>(null);
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
-
-export default App;
+  return (
+    <div className="app-shell">
+      <header>
+        <div>
+          <p className="beta">alpha</p>
+          <h1>Roglo Admin Portal</h1>
+          <p className="muted">
+            Explore les personnes exposées par l'API GraphQL et pilote les
+            changements de confidentialité.
+          </p>
+        </div>
+      </header>
+      <main className="panels">
+        <section className="panel">
+          <PersonSearch
+            selectedPersonId={selectedPersonId}
+            onSelect={setSelectedPersonId}
+          />
+        </section>
+        <section className="panel">
+          <PersonDetails personId={selectedPersonId} />
+          <RelationshipInspector basePersonId={selectedPersonId} />
+        </section>
+      </main>
+    </div>
+  );
+}
