@@ -1,0 +1,10 @@
+[package]
+name = "export"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { workspace = true }
+gedcom = { path = "../gedcom" }
+genealogy-types = { path = "../genealogy-types" }
+serde_json = { workspace = true }

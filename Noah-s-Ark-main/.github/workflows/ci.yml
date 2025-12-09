@@ -1,0 +1,35 @@
+name: Rust CI
+
+on:
+  push:
+    branches: ["main", "cursor/**"]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain nightly
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: nightly
+
+      - name: Show rustc version
+        run: rustc +nightly --version
+
+      - name: Cache Cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cargo check (future incompat)
+        env:
+          SQLX_OFFLINE: "true"
+        run: cargo +nightly check --future-incompat-report
